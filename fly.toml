@@ -1,0 +1,21 @@
+# Name of your Fly.io app
+app = "microswab-ai-123"
+
+# Graceful shutdown settings
+kill_signal = "SIGINT"
+kill_timeout = 5
+processes = []
+
+[build]
+  # We are using a Node.js Docker image for building
+  image = "node:20"
+
+[[services]]
+  # Port your Node.js app listens to internally
+  internal_port = 3000
+  protocol = "tcp"
+
+  [[services.ports]]
+    # External port (publicly accessible)
+    port = 80
+    handlers = ["http"]
